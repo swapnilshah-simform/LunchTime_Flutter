@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lunchtime_frontend/routes/route_generator.dart';
-import 'package:lunchtime_frontend/screens/feedback_screen.dart';
+import 'package:lunchtime_frontend/screens/login_screen.dart';
 
 import 'utils/strings.dart';
 import 'utils/themes.dart';
+import 'package:lunchtime_frontend/utils/themes.dart';
+
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -15,6 +17,6 @@ void main() {
     debugShowCheckedModeBanner: false,
     theme: CustomTheme.lightTheme,
     title: StringApp.materialAppButtonTitle,
-    home: const FeedBackScreen(),
+    home: const LoginScreen(),
   ));
 }
