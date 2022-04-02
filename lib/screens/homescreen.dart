@@ -1,22 +1,30 @@
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+import '../custom_widgets/count_card.dart';
+import '../custom_widgets/food_card.dart';
+import '../custom_widgets/homescreen_button.dart';
+import '../custom_widgets/starttime.dart';
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
+class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
 
-class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home Page'),
-      ),
-      body: const Center(
-        child: Text('Hi'),
-      ),
+    return Column(
+      children: [
+        Expanded(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                StartTimeWidget(),
+                const CountCard(),
+                const FoodCardWidget(),
+                HomeScreenButton(),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
