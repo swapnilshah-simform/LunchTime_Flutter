@@ -36,7 +36,6 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   new_gradient_app_bar: ^0.2.0
-  google_fonts: ^2.3.1
   intl: ^0.17.0
   glassmorphism: ^3.0.0
   retrofit: ^3.0.1+1
@@ -68,6 +67,8 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  assets:
+    - assets/images/simform.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
