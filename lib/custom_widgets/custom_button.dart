@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lunchtime_frontend/utils/colors.dart';
 import 'package:lunchtime_frontend/utils/strings.dart';
 
@@ -28,8 +29,11 @@ class ElevatedGradientButton extends StatelessWidget {
         ),
         child: Text(
           label ?? StringApp.textFieldHintDisplay,
-          style: const TextStyle(
-              fontSize: 18, color: Colors.white, fontWeight: FontWeight.w600),
+          style: GoogleFonts.lato(
+            fontSize: 18,
+            color: Colors.white,
+            fontWeight: FontWeight.w600,
+          ),
         ),
         onPressed: () {
           onPressed!();

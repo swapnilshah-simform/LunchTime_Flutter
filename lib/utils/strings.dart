@@ -41,6 +41,10 @@ class StringApp {
   static const registrationCompleted = 'Registration Completed';
   static const invalidPassword = 'Invalid Password';
   static const somethingWentWrong = 'somthing went wrong';
+  static const feedback = "Give Feedback";
+  static const care = "Care to share more about it?";
+  static const how = "How did we do?";
+  static const publsih = "Publish Feedback";
 
   static const loginRoute = '/login';
   static const signUpRoute = '/Sign-up';
