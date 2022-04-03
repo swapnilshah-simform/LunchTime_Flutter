@@ -1,4 +1,8 @@
 class StringApp {
+  static const start_time = "You lunch will start at:";
+  static const available = "Vacant Seats";
+  static const total = "Occupied Seats";
+  static const profile = "/profile";
   static const titleAppbar = 'Employee List ';
   static const statefulExample = 'Stateful Widget Example ';
   static const stateLeesExample = 'Stateless Widgets Example ';
