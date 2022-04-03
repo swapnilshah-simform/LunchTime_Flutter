@@ -32,6 +32,7 @@ abstract class ApiClient {
   @POST(Apis.signIn)
   Future<HttpResponse> signIn(@Body() UserSignIn singleUser);
 
+  
   @GET('register/{id}')
   Future<HttpResponse<UserSignUp>> getUser(@Path('id') int id);
 
