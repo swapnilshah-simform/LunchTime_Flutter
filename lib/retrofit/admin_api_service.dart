@@ -10,7 +10,7 @@ class AdminApis {
   static const String menu = 'apimenu/menu/';
 }
 
-@RestApi(baseUrl: "http://172.16.3.143:8000/")
+@RestApi(baseUrl: "http://52.90.56.246:8000/api/")
 abstract class ApiClient {
   factory ApiClient(Dio dio, {required String baseUrl}) {
     dio.interceptors.add(LogInterceptor(requestBody: true, responseBody: true));
@@ -25,5 +25,5 @@ final client = ApiClient(
   Dio(
     BaseOptions(contentType: "application/json"),
   ),
-  baseUrl: "http://172.16.3.143:8000/",
+  baseUrl: "http://52.90.56.246:8000/api/",
 );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lunchtime_frontend/utils/colors.dart';
+import 'package:lunchtime_frontend/utils/strings.dart';
 
 class HomeScreenButton extends StatelessWidget {
   const HomeScreenButton({Key? key}) : super(key: key);
@@ -18,7 +19,9 @@ class HomeScreenButton extends StatelessWidget {
             ),
           ),
           child: ElevatedButton.icon(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, StringApp.feedbackRoute);
+            },
             icon: const Icon(
               Icons.feedback,
             ),
@@ -36,7 +39,7 @@ class HomeScreenButton extends StatelessWidget {
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
-                  side: BorderSide(
+                  side: const BorderSide(
                     color: Colors.red,
                   ),
                 ),
@@ -48,7 +51,9 @@ class HomeScreenButton extends StatelessWidget {
           height: 50,
           width: 160,
           child: ElevatedButton.icon(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, StringApp.qrScannerRoute);
+            },
             icon: const Icon(
               Icons.qr_code,
             ),

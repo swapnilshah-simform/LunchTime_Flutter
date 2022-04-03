@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:lunchtime_frontend/screens/homescreen.dart';
+import 'package:lunchtime_frontend/data/sign_in.dart';
 
 import '../custom_widgets/custom_button.dart';
 import '../custom_widgets/custom_text.dart';
 import '../custom_widgets/custom_textfield.dart';
+import '../retrofit/api_service.dart';
 import '../utils/constants.dart';
 import '../utils/sizes_helpers.dart';
 import '../utils/strings.dart';
@@ -18,10 +19,9 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  String staticEmail = StringApp.staticEmail;
-  String staticPassword = StringApp.staticPassword;
-  TextEditingController? emailController = TextEditingController();
-  TextEditingController? passwordController = TextEditingController();
+
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   get displayheight => displayHeight(context);
   bool isVisible = true;
@@ -103,27 +103,51 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                     ),
                   ),
-                  Container(
-                    margin: const EdgeInsets.all(12),
-                    alignment: Alignment.centerRight,
-                    child: const Text(
-                      StringApp.forgotPassword,
-                      style: TextStyle(color: Colors.black87),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, StringApp.forgotRoute);
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.all(12),
+                      alignment: Alignment.centerRight,
+                      child: const Text(
+                        StringApp.forgotPassword,
+                        style: TextStyle(color: Colors.black87),
+                      ),
                     ),
                   ),
                   sizeBoxSpace(0.02),
                   ElevatedGradientButton(
                       label: StringApp.loginButton,
-                      onPressed: () {
+                      onPressed: () async {
+                        print('hi');
+                        if(emailController.text == StringApp.adminName && passwordController.text == StringApp.adminPassword){
+                          Navigator.pushNamed(context,StringApp.adminRoute);
+                        }
                         if (formKey.currentState!.validate()) {
-                          if (staticEmail == emailController?.text &&
-                              staticPassword == passwordController?.text) {
-                            Navigator.push(
+
+                          var res = await client.signIn(
+                            UserSignIn(
+                              email: emailController.text.toString(),
+                              password: passwordController.text.toString(),
+                            ),
+                          );
+
+                          if (res.response.statusCode == 200) {
+                            Navigator.popAndPushNamed(
                               context,
-                              MaterialPageRoute(
-                                builder: (context) => const HomePage(),
+                              StringApp.homeRoute,
+                              arguments: res.data.toString(),
+                            );
+                          } else if (res.response.statusCode == 404) {
+                            const snackBar = SnackBar(
+                              content: Text(
+                                StringApp.somethingWentWrong,
+                                textAlign: TextAlign.center,
                               ),
                             );
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
                           } else {
                             const snackBar = SnackBar(
                               content: Text(
@@ -134,11 +158,19 @@ class _LoginScreenState extends State<LoginScreen> {
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(snackBar);
                           }
+                        } else {
+                          const snackBar = SnackBar(
+                            content: Text(
+                              StringApp.pleaseCheckAllFields,
+                              textAlign: TextAlign.center,
+                            ),
+                          );
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         }
                       }),
                   sizeBoxSpace(0.015),
                   CustomText(
-                      firstText: StringApp.newUserText,
+                      firstText: StringApp.dontHaveAnAccount + ', ',
                       secondText: StringApp.signUp,
                       onTap: () {
                         Navigator.pushNamed(context, StringApp.signUpRoute);

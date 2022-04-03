@@ -50,7 +50,7 @@ class SliverAppBarWidget extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.bottomLeft,
                       child: Text(
-                        "Hello Jatin",
+                        "Hello User ",
                         style: GoogleFonts.lato(
                             fontSize: 18,
                             color: Colors.white,

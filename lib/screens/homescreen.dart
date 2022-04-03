@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
                 StartTimeWidget(),
                 const CountCard(),
                 const FoodCardWidget(),
-                HomeScreenButton(),
+                const HomeScreenButton(),
               ],
             ),
           ),

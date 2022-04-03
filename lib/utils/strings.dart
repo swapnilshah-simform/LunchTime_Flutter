@@ -1,5 +1,5 @@
 class StringApp {
-  static const start_time = "You lunch will start at:";
+  static const start_time = "Your lunch will start at:";
   static const available = "Vacant Seats";
   static const total = "Occupied Seats";
   static const profile = "/profile";
@@ -45,8 +45,22 @@ class StringApp {
   static const care = "Care to share more about it?";
   static const how = "How did we do?";
   static const publsih = "Publish Feedback";
-
+  static const adminName = 'Admin';
+  static const adminPassword = 'Admin';
   static const loginRoute = '/login';
   static const signUpRoute = '/Sign-up';
   static const homeRoute = '/homeRoute';
+  static const forgotRoute = '/forgotpassword';
+  static const resetPassword = 'reset password';
+  static const pleaseCheckAllFields = 'Please check all field are correct';
+  static const dontHaveAnAccount = 'don\'t have account';
+  static const SuccessSignIn = 'User sign-in successfully!';
+  static const conformPassword = 'Confirm Password';
+  static const  passwordIsNotMatching = 'password is not matching';
+  static const qrScannerRoute = 'QRScanner';
+  static const afterScanResult = 'AfterScanResult';
+  static const afterScanResultRoute = 'AfterScanResult';
+  static const buildQrViewRoute = 'BuildQrView';
+  static const adminRoute = 'AdminRoute';
+  static const feedbackRoute = "FeedbackRoute";
 }

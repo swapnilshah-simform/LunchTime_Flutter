@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 import '../utils/colors.dart';
@@ -50,6 +51,7 @@ class CustomTextFieldPassword extends State<CustomTextField> {
         validator: widget.validator,
         controller: widget.controller,
         obscureText: widget.obscureTextPassword,
+        autofocus: true,
         keyboardType: widget.keyboardType,
         decoration: InputDecoration(
           focusedBorder: OutlineInputBorder(

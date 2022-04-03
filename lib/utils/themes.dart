@@ -62,7 +62,7 @@ class CustomTheme {
           )),
       appBarTheme: const AppBarTheme(
           systemOverlayStyle: SystemUiOverlayStyle.dark,
-          foregroundColor: Colors.teal,
+          foregroundColor: Colors.red,
           titleTextStyle: TextStyle(
               fontSize: 22, color: Colors.teal, fontWeight: FontWeight.bold)),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(

@@ -22,12 +22,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController conformPasswordController = TextEditingController();
 
   bool isVisible = true;
 
   Widget sizeBoxSpace(double value) => SizedBox(
-        height: MediaQuery.of(context).size.height * value,
-      );
+    height: MediaQuery.of(context).size.height * value,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -130,6 +131,44 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   const SizedBox(
                     height: 15,
                   ),
+                  CustomTextField(
+                    actionType: TextInputAction.done,
+                    keyboardType: TextInputType.visiblePassword,
+                    controller: conformPasswordController,
+                    validator: (String? val) {
+                      if (val != null) {
+                        if (val.isEmpty) {
+                          return StringApp.passwordShouldNotEmpty;
+                        } else if (!RegExp(Constant.passwordRegex)
+                            .hasMatch(val)) {
+                          return StringApp.enterStrongPassword;
+                        } else if (conformPasswordController.text !=
+                            passwordController.text) {
+                          return StringApp.passwordIsNotMatching;
+                        } else {
+                          return null;
+                        }
+                      }
+                    },
+                    obscureTextPassword: isVisible,
+                    isSuffixVisible: true,
+                    prefixIcon: const Icon(Icons.admin_panel_settings_sharp),
+                    labelText: StringApp.conformPassword,
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        isVisible ? Icons.visibility_off : Icons.visibility,
+                        color: Theme.of(context).primaryColorDark,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          isVisible = !isVisible;
+                        });
+                      },
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
                   ElevatedGradientButton(
                     onPressed: () async {
                       if (formKey.currentState!.validate()) {
@@ -141,8 +180,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         );
 
-                        if (res.response.statusCode == 201) {
-                          Navigator.pushNamed(context, StringApp.homeRoute);
+                        if (res.response.statusCode == 200) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                             SnackBar(
+                              duration: Duration(seconds: 3),
+                              content: Text(StringApp.SuccessSignIn),
+                            ),
+                          );
                         } else if (res.response.statusCode == 400) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
@@ -152,13 +196,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
+                              duration: Duration(milliseconds: 20000),
                               content: Text(StringApp.somethingWentWrong),
                             ),
                           );
                         }
                       } else {
                         const snackBar = SnackBar(
-                          content: Text(StringApp.somethingWentWrong),
+                          duration: Duration(milliseconds: 20000),
+                          content: Text(StringApp.pleaseCheckAllFields),
                         );
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       }
